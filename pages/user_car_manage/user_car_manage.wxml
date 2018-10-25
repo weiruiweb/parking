@@ -1,0 +1,38 @@
+<!--User.wxml-->
+<view class="user_banner flex">
+    <image src="/images/logo.png"></image>
+</view>
+<view class="font28 color6 w710" style="margin-bottom:60rpx;"><text class="font32">绑定车牌：</text>请输入可用的车牌进行绑定，内容内容内容内容内 内容内容内容内容内容内容内容内容内容内容内容</view>
+<view class="w710 flexRowBetween" id="number">
+	<view class="province flex">
+		<input type="" name=""></input>
+		<input type="" name="" style="border-left:solid 1px #e0e0e0;"></input>
+	</view>
+	<view class="circle">●</view>
+	<view class="number_car"><input type="" name=""></input></view>
+	<view  class="number_car"><input type="" name=""></input></view>
+	<view class="number_car"><input type="" name=""></input></view>
+	<view  class="number_car"><input type="" name=""></input></view>
+	<view class="number_car"><input type="" name=""></input></view>
+	<view class="number_car" style="border:dashed 1px #999;width:12%;">
+		<view  class="color9 font32">+</view>
+		<view class="color9 font22">新能源</view>
+	</view>
+</view>
+<view class="w710 flexRowBetween" id="number">
+	<view class="province flex">
+		<input type="" name=""></input>
+		<input type="" name="" style="border-left:solid 1px #e0e0e0;"></input>
+	</view>
+	<view class="circle">●</view>
+	<view class="number_car"><input type="" name=""></input></view>
+	<view  class="number_car"><input type="" name=""></input></view>
+	<view class="number_car"><input type="" name=""></input></view>
+	<view  class="number_car"><input type="" name=""></input></view>
+	<view class="number_car"><input type="" name=""></input></view>
+	<view class="number_car" style="border:dashed 1px #999;width:12%;">
+		<view  class="color9 font32">+</view>
+		<view class="color9 font22">新能源</view>
+	</view>
+</view>
+<button class="submit_info">绑定车牌</button>

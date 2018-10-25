@@ -1,0 +1,49 @@
+<!--index2.wxml-->
+<view class="w710">
+    <view class="record w710 flex">
+        <view class="record_cont font28">
+            <view class="record_list flex">
+                <view class="record_left flex">
+                    <image src="/images/parking1.png"></image>车 牌 号:
+                </view>
+                <view class="record_right">陕A 26566 </view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left  flex">
+                    <image src="/images/parking2.png"></image>停车时间:
+                </view>
+                <view class="record_right">开始时间: 2018-09-09  23：00</view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left"></view>
+                <view class="record_right">结束时间: 2018-09-09  24：00</view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left flex">
+                    <image src="/images/parking3.png"></image>停车时长:
+                </view>
+                <view class="record_right">2小时30分钟 </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="color" style="font-size:36rpx;margin-top: 124rpx;text-align: center;">您本次停车需要支付的费用为：</view>
+<view class="payment">
+    <view class="pay_mark">
+        <view class="pay_mark1 bg1 font28 color1">¥</view>
+    </view>
+    <view class="pay_number">117</view>
+    <view class="pay_unit">
+        <view class="pay_unit1">元整</view>
+    </view>
+</view>
+<view class="credit font32 color6 flexCenter">
+    或选择积分付款：300积分
+    <image src="/images/parking4.png"></image>
+</view>
+<button class="submit_info">立即付款</button>
+<view class="font28 color9" style="text-align: center;"> 城市立方地下停车场</view>
+
+
+
+

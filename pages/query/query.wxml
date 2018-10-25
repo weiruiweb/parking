@@ -1,0 +1,40 @@
+<!--index1.wxml-->
+<view class="w710">
+    <view class="search flex">
+        <input placeholder="请输入车牌号" class="font28 color6"></input>
+        <view class="search_btn" bindtap="intoPath" data-path="/pages/query1/query1">
+            <image src="/images/search.png"></image>
+        </view>
+    </view>
+    <view class="font28 color6" style="height:108rpx;line-height: 108rpx;">你绑定的车牌号</view>
+    <view class="bind flex">
+        <view class="search_number bg font28 color1">陕A 45456</view>
+        <view class="search_number bg font28 color1">陕A 45456</view>
+    </view>
+    <view class="car_mark font28 flex">
+        <image src="/images/car_mark.png"></image>
+        剩余车位：<text class="color font32">100</text>个
+    </view>
+</view>
+<view class="navbar">
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/index/index">
+        <view class="nav_img">
+          <image src="/images/navbar1.png"></image>
+        </view>
+        <view class="text">停车缴费</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/query/query">
+        <view class="nav_img">
+           <image src="/images/navbar2-a.png"></image>
+        </view>
+        <view class="text this-text">车辆查询</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
+        <view class="nav_img">
+            <image src="/images/navbar3.png"></image>
+        </view>
+        <view class="text">个人中心</view>
+    </view>
+</view>
+
+

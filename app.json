@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/query/query",
+    "pages/query1/query1",
+    "pages/user/user",
+    "pages/user_parking/user_parking",
+    "pages/user_member/user_member",
+    "pages/user_credit/user_credit",
+    "pages/user_account/user_account",
+    "pages/user_member_in/user_member_in",
+    "pages/user_car_manage/user_car_manage",
+    "pages/login/login",
+    "pages/index_parking_detail/index_parking_detail"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#eb0096",
+    "navigationBarTitleText": "停车场",
+    "navigationBarTextStyle": "#fff"
+  }
+}

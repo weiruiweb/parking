@@ -1,0 +1,63 @@
+<!--index2.wxml-->
+<view class="tab font32 flexRowBetween">
+    <view class="tab_item {{currentId == 0?'tab_this':''}}" data-id="0" bindtap="tab">
+        进行中
+    </view>
+    <view class="tab_item {{currentId == 1?'tab_this':''}}" data-id="1"  bindtap="tab">
+        已完结
+    </view>
+</view>
+<view class="w710">
+    <view class="record w710" style="{{currentId == 0?'display: block;':''}}">
+        <view class="record_cont font28">
+            <view class="record_list flex">
+                <view class="record_left">车 牌 号:</view>
+                <view class="record_right">陕A 26566 </view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left">停车时长:</view>
+                <view class="record_right color">2小时计时中 </view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left">付款方式:</view>
+                <view class="record_right">微信支付  12元 </view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left">停车时间:</view>
+                <view class="record_right">2018-09-09  23：00</view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left"></view>
+                <view class="record_right">2018-09-09  24：00</view>
+            </view>
+        </view>
+    </view>
+    <view class="record1 w710"  style="{{currentId == 1?'display: block;':''}}">
+        <view class="record_cont font28">
+            <view class="record_list flex">
+                <view class="record_left">车 牌 号:</view>
+                <view class="record_right">陕A 26566 </view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left">停车时长:</view>
+                <view class="record_right">2小时</view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left">付款方式:</view>
+                <view class="record_right">微信支付  12元 </view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left">停车时间:</view>
+                <view class="record_right">2018-09-09  23：00</view>
+            </view>
+            <view class="record_list flex">
+                <view class="record_left"></view>
+                <view class="record_right">2018-09-09  24：00</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+
+

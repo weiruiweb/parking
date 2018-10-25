@@ -1,0 +1,264 @@
+/**index.wxss**/
+@import "../../wxParse/wxParse.wxss"; 
+page{
+	width:100%;
+	min-height:100%;
+	background:#fbe16b;
+}
+.banner{
+	width:100%;
+	height:466rpx;
+	overflow: hidden;
+}
+.banner image{
+	width:100%;
+	height: 100%;
+}
+/*********跑马灯效果***********/
+#marquee{
+  width: 100%;
+  height: 72rpx;
+}
+.horn{
+	width:10%;
+	height:100%;
+	display:flex;
+	align-items:center;
+}
+.horn image{
+	width:34rpx;
+	height:34rpx;
+}
+.marquee_right{
+	width:90%;
+	height:100%;
+	overflow:hidden;
+}
+.marquee_box {
+  width: 100%;
+  height:100%;
+  position: relative;
+}
+.marquee_text {
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+}
+.marquee_box .title {
+  padding: 10rpx 20rpx;
+  margin: 0 0 20rpx 0;
+  border-left: 10rpx solid #ccc;
+  font-size: 30rpx;
+  background: #ececec;
+}
+.marquee_panel {
+  margin: 20rpx 20rpx 20rpx 0;
+  border-left: 10rpx solid #ccc;
+  font-size: 26rpx;
+}
+.marquee_panel>view {
+  padding: 30rpx;
+  background: #ececec;
+  border-radius: 0 20rpx 20rpx 0;
+}
+/*********************车牌号************************/
+.car_number{
+	width:100%;
+	height:120rpx;
+	border-radius:10rpx;
+	margin-top:36rpx;
+}
+.nubmer_one{
+	width:14.2%;
+	height:50rpx;
+	border-right:solid 1px #f366c0;
+	fony-size:46rpx;
+	color:#fff;
+	text-align:center;
+}
+.change_number{
+	width:100%;
+	height:124rpx;
+}
+.change_number image{
+	width:28rpx;
+	height:26rpx;
+	margin-right:10rpx;
+}
+.new_number{
+	height:90rpx;
+	background:#ffcd21;
+	line-height:90rpx;
+	border-radius:10rpx;
+	position:relative;
+}
+.submit_info image{
+	width:40rpx;
+	height:40rpx;
+	position:absolute;
+	top:24rpx;
+	right:38rpx;
+}
+/***********************键盘*************************/
+.title {
+  width: 100%;
+  height: 340rpx;
+  line-height: 340rpx;
+  text-align: center;
+}
+ 
+.title-img {
+  margin: 180rpx 60rpx auto;
+  text-align: center;
+  width: 420rpx;
+  height: 120rpx;
+}
+ 
+.text_con {
+  border: 1rpx solid #eee;
+}
+ 
+.input_in {
+  width: 94%;
+  padding: 0 3%;
+  border: 1rpx solid #eb0096;
+  height:100rpx;
+  border-radius:10rpx;
+}
+ 
+.search_icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0 20rpx;
+}
+ 
+.photo_icon{
+  position: absolute;
+  top:400rpx;
+  right: 50rpx;
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0 20rpx;
+}
+ 
+.del_icon {
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+}
+ 
+.delect_img {
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+}
+.placeholder {
+  color: #bdc3c7;
+}
+ 
+.keyboard {
+  z-index: 9999;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  background: #eaf1f9;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 15rpx solid #eaf1f9;
+  border-top: 20rpx solid #eaf1f9;
+}
+ 
+.td {
+  font-family: "微软雅黑";
+  flex-grow: 1;
+  text-align: center;
+  font-size: 36rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #fff;
+  margin: 5rpx;
+  border: 1rpx solid #cdd0d5;
+  color: #1e1e1e;
+  border-radius: 10rpx 10rpx 10rpx 10rpx;
+  box-shadow: 5rpx 5rpx 2rpx #cdd0d5;
+}
+ 
+.td_nor {
+  flex: 1 1 10%;
+}
+ 
+.td_num {
+  flex: 1 1 8%;
+}
+ 
+.td_spec_fin {
+  background-color: #fff;
+  flex: 1 1 23%;
+}
+.td_spec_del{
+  width: 50px;
+  height: 50px;
+}
+ 
+.board_bg {
+  box-shadow: 0 0 0 #e5e5e5;
+  background: #e5e5e5;
+}
+.board_bg_spec {
+  box-shadow: 0 0 0 #e5e5e5;
+}
+ 
+.parking {
+  position: absolute;
+  right: 20rpx;
+  bottom: 100rpx;
+}
+ 
+.parking_icon {
+  width: 200rpx;
+  height: 200rpx;
+}
+ 
+.warn {
+  width: 100%;
+  height: 20%;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: '宋体';
+  font-size: 28rpx;
+  color: #8b9397;
+  text-align: center;
+  line-height: 48rpx;
+}
+ 
+.warn_text {
+  width: 80%;
+}
+ 
+.bottom {
+  position: absolute;
+  bottom: 30rpx;
+  width: 100%;
+  font-size: 22rpx;
+  font-family: '宋体';
+  color: #8b9397;
+  line-height: 36rpx;
+}
+ 
+.tel {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+ 
+.phone_icon {
+  width: 22rpx;
+  height: 22rpx;
+  margin: 0 10rpx;
+}

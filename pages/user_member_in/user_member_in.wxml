@@ -1,0 +1,26 @@
+<!--User.wxml-->
+<view class="user_banner">
+    <image src="/images/banner.png"></image>
+</view>
+<view class="w710">
+	<view class="user_left flex">
+	    <image src="/images/member_icon2.png"></image>
+	    <text class="color font30">会员权益</text>
+	</view>
+	<view class="member_title font28 flex">
+		<view class="title_left">●</view>
+		<view class="color3 title_right">减免特权</view>
+	</view>
+	<view class="font26 flex" style="line-height: 42rpx;">
+		<view class="title_left"></view>
+		<view class="color6 title_right">减免特权内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</view>
+	</view>
+	<view class="member_title font28 flex">
+		<view class="title_left">●</view>
+		<view class="color3 title_right">减免特权</view>
+	</view>
+	<view class="font26 flex" style="line-height: 42rpx;">
+		<view class="title_left"></view>
+		<view class="color6 title_right">减免特权内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</view>
+	</view>
+</view>

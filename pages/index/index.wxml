@@ -1,0 +1,112 @@
+<!--index.wxml-->
+<view class="banner"  bindtap="hideKeyboard">
+    <image src="/images/banner.png"></image>
+</view>
+<view class="w710" style="background: #feefaf;"  bindtap="hideKeyboard">
+    <view id="marquee" class="flexRowBetween">
+      <view class="horn"><image src="/images/horn.png"></image></view>
+      <view class="marquee_right">
+        <view class="marquee_box">
+          <view class="marquee_text font28 flex" style="{{orientation}}:{{marqueeDistance2}}px;width:100%;height:100%;">
+            <text>技术支持:西安纯粹科技有限公司技术支持:西安纯粹科技有限公司技术支持:西安纯粹科技有限公司</text>
+            <text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{text}}</text>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
+<view class="page w710">
+  <!--输入框默认样式-->
+  <block wx:if="{{!isFocus}}">
+    <view class="input_in text_con flex" bindtap="showKeyboard">
+      <image src="/images/search.png" mode="aspectFit" class="search_icon"></image>
+      <text class="placeholder">{{placeholder}}</text>
+    </view>
+  </block>
+  <!--输入框打开键盘样式-->
+  <block wx:else="{{isFocus}}">
+    <view class="input_in text_con_focus  flex" bindtap="bindFocus" >
+      {{textValue}}
+      <view animation="{{animationData}}">|</view>
+    </view>
+  </block>
+  <!--键盘-->
+  <block wx:if="{{isKeyboard}}">
+    <view class="keyboard">
+ 
+      <!--省份简写键盘-->
+      <view class="td td_nor" wx:for="{{keyboardValue}}" wx:for-index="idx" wx:for-item="itemName" bindtap="tapKeyboard" wx:key="keyboardValue" data-index="{{idx}}" data-val="{{itemName}}" hover-class="board_bg" hover-start-time="0" hover-stay-time="80">
+        {{itemName}}
+      </view>
+ 
+      <!--数字键盘不可点击-->
+      <view wx:if="{{specialBtn && !tapNum}}" class="td td_num board_bg" wx:for="{{keyboardNumber}}" wx:for-index="idx" wx:for-item="itemName"  wx:key="keyboardNumber">
+        {{itemName}}
+      </view>
+ 
+      <!--数字键盘可点击-->
+      <view wx:if="{{specialBtn && tapNum}}" class="td td_num" wx:for="{{keyboardNumber}}" wx:for-index="idx" wx:for-item="itemName" bindtap="tapKeyboard" data-index="{{idx}}" data-val="{{itemName}}" hover-class="board_bg" hover-start-time="0" hover-stay-time="80" wx:key="keyboardNumber">
+        {{itemName}}
+      </view>
+ 
+      <!--字母键盘-->
+      <view wx:if="{{specialBtn}}" class="td td_num" wx:for="{{keyboardAlph}}" wx:for-index="idx" wx:for-item="itemName" wx:key="itemName"  hover-class="board_bg" hover-start-time="0" hover-stay-time="80">
+          <view class="del_icon" wx:if="{{idx == 19}}" bindtap="tapKeyboard" data-index="{{idx}}" data-val="{{itemName}}">
+            <image src="/images/close.png" mode="aspectFit" data-val="{{itemName}}" class="delect_img"></image>
+          </view>
+          <view wx:elif="{{idx != 19}}"  bindtap="tapKeyboard" data-index="{{idx}}" data-val="{{itemName}}">
+          {{itemName}}
+          </view>
+      </view>
+ 
+      <!--完成按钮 start-->
+      <view class="td td_spec_fin" wx:for="{{keyboard2For}}" wx:key="itemName"   wx:for-index="idx" wx:for-item="itemName" bindtap="tapSpecBtn" data-index="{{idx}}" data-val="{{itemName}}" wx:if="{{specialBtn}}" hover-class="board_bg_spec" hover-start-time="0" hover-stay-time="80">
+        {{itemName}}
+      </view>
+      <!--完成按钮 end-->
+    </view>
+  </block>
+</view>
+
+<view class="w710">
+    <view class="car_number bg flexRowBetween">
+        <view class="nubmer_one">陕</view>
+        <view class="nubmer_one">A</view>
+        <view class="nubmer_one">5</view>
+        <view class="nubmer_one">5</view>
+        <view class="nubmer_one">5</view>
+        <view class="nubmer_one">5</view>
+        <view class="nubmer_one">5</view>
+    </view>
+    <view class="change_number flexCenter color font28">
+        <image src="/images/change.png"></image>
+        切换新能源车牌
+    </view>
+    <view class="submit_info new_number"  bindtap="intoPath" data-path="/pages/index_parking_detail/index_parking_detail">
+       {{textValue}}
+        <image src="/images/close.png"></image>
+    </view>
+</view>
+<!--pages/jp_cp/jp_cp.wxml-->
+
+
+<view class="navbar">
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/index/index">
+        <view class="nav_img">
+          <image src="/images/navbar1-a.png"></image>
+        </view>
+        <view class="text this-text">停车缴费</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/query/query">
+        <view class="nav_img">
+           <image src="/images/navbar2.png"></image>
+        </view>
+        <view class="text">车辆查询</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
+        <view class="nav_img">
+            <image src="/images/navbar3.png"></image>
+        </view>
+        <view class="text">个人中心</view>
+    </view>
+</view>

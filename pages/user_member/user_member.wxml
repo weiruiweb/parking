@@ -1,0 +1,49 @@
+<!--index3.wxml-->
+<view class="w710">
+    <view class="user_banner">
+        <image src="/images/member_banner.jpg"></image>
+        <view class="banner_box color1 font28">
+            <view class="user_left flex">
+                <image src="/images/member1.png"></image>
+                <text>卡号 4674867</text>
+            </view>
+            <view class="user_left flex">
+                <image src="/images/member2.png"></image>
+                <text>等级：普通</text>
+            </view>
+            <view class="user_left flex">
+                <image src="/images/member3.png"></image>
+                <text>积分：80</text>
+            </view>
+        </view>
+    </view>
+    <view class="user_all font30 color3">
+        <view class="user_infor flexRowBetween w710"  bindtap="intoPath" data-path="/pages/user_credit/user_credit">
+            <view class="user_left flexRowBetween">
+                <image src="/images/member_icon.png"></image>
+                <text>积分记录</text>
+            </view>
+            <view class="next_page">
+                <image src="/images/next_page.jpg"></image>
+            </view>
+        </view>
+        <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_account/user_account">
+            <view class="user_left flexRowBetween">
+                <image src="/images/member_icon_1.png"></image>
+                <text>账号信息</text>
+            </view>
+            <view class="next_page">
+                <image src="/images/next_page.jpg"></image>
+            </view>
+        </view>
+        <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_member_in/user_member_in">
+            <view class="user_left flexRowBetween">
+                <image src="/images/member_icon2.png"></image>
+                <text>会员权益</text>
+            </view>
+            <view class="next_page">
+                <image src="/images/next_page.jpg"></image>
+            </view>
+        </view>
+    </view>
+</view>

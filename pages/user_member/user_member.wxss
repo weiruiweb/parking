@@ -1,0 +1,54 @@
+/**index.wxss**/
+
+@import "../../wxParse/wxParse.wxss"
+
+page{
+	width: 100%;
+	min-height: 100%;
+}
+.user_banner{
+	width:100%;
+	height:346rpx;
+	position:relative;
+	margin-top:20rpx;
+}
+.user_banner image{
+	width:100%;
+	height:100%;
+}
+.banner_box{
+	width:95%;
+	padding-left:5%;
+	height:346rpx;
+	position:absolute;
+	top:16%;
+	left:0;
+}
+.banner_box .user_left{
+	height:76rpx;
+}
+.banner_box .user_left text{
+	color:#fff;
+}
+.user_left{
+	align-items:center;
+}
+.user_left image{
+	width:34rpx;
+	height:36rpx;
+	margin-right:12rpx;
+}
+.user_infor{
+	height:96rpx;
+	line-height:96rpx;
+	background:#fff;
+	border-bottom:solid 1px #dcdcdc;
+	align-items:center;
+	}
+.next_page image{
+	width:11rpx;
+	height:20rpx;
+}
+.user_all{
+	margin-top:12rpx;
+}
