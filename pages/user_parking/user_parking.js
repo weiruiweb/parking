@@ -7,21 +7,110 @@ const token = new Token();
 Page({
   data: {
    currentId:0,
-   currentId1:0,
+   isLoadAll:false,
+   carData:[]
   },
+
   onLoad(options){
+    const self = this;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     
+    self.getAddressData();
   },
+
   tab(e){
-   this.setData({
+    const self = this;
+    if(e.currentTarget.dataset.id==1){
+      self.orderGet();
+    };
+    self.setData({
       currentId:e.currentTarget.dataset.id
     })
   },
-  tabs(e){
-   this.setData({
-      currentId1:e.currentTarget.dataset.id
-    })
+
+  getAddressData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self);
+    }
+    const postData = {};
+    postData.token = wx.getStorageSync('token');
+    postData.searchItem = {
+      isdefault:1
+    };
+    const callback = (res)=>{
+      console.log(res);
+      if(res.info.data.length>0){
+        self.data.carData = res.info.data[0]
+      }else{
+        api.showToast('没有停车信息','none');
+      };
+      self.setData({
+        web_carData:self.data.carData,
+      });
+      self.GetCarInfo()
+    };
+    api.addressGet(postData,callback);
   },
+
+  GetCarInfo(){
+    const self  = this;
+    const postData = {
+      token:wx.getStorageSync('token'),
+      data:{
+        carCode:self.data.carData.name,
+      },
+      url:"GetCarInfo" 
+    };
+    const callback = (res)=>{
+      console.log(res)
+      if(res){
+        self.data.mainData = res,
+        self.data.buttonClicked=false
+      }else{
+        api.showToast('网络故障','none')
+      };
+      wx.hideLoading();
+      self.setData({
+        web_mainData:self.data.mainData,
+        web_time:api.formatSeconds(self.data.mainData.parkingSeconds)
+      });
+    }
+    api.GetCarInfo(postData,callback)
+  },
+
+  orderGet(){
+    const self  = this;
+    const postData = {
+      paginate:api.cloneForm(self.data.paginate),
+      token:wx.getStorageSync('token'),
+    };
+    const callback = (res)=>{
+      if(res.info.data.length>0){
+        self.data.parkData.push.apply(self.data.parkData,res.info.data);   
+      }else{
+        isLoadAll:true
+        api.showToast('没有更多了','none')
+      }
+      wx.hideLoading();
+      self.setData({
+        web_parkData:self.data.parkData,
+      });
+    }
+    api.logGet(postData,callback)
+  },
+
+  onReachBottom() {
+    const self = this;
+    if(!self.data.isLoadAll){
+      self.data.paginate.currentPage++;
+      self.getMainData();
+    };
+  },
+
+
+
+
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');

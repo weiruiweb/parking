@@ -1,6 +1,8 @@
 import {Api} from '../../utils/api.js';
 var api = new Api();
 const app = getApp();
+import {Token} from '../../utils/token.js';
+const token = new Token();
 
 
 Page({
@@ -30,20 +32,13 @@ Page({
     keyboardValue: '',
     textArr: [],
     textValue: '陕A',
-    placeholder: '输入或拍照录入车牌'
+    placeholder: '输入或拍照录入车牌',
+    newOil:false
   },
- onLoad: function (options) {
-    //生命周期函数--监听页面加载
-    var that = this;
-    var userInfo = wx.getStorageSync('userInfo');
-    var carno = userInfo.carno;
-    if (carno != 'null' && carno != '' && carno != null) {
-      that.setData({
-        textValue: carno
-      });
- 
-    }
-  },
+
+
+
+
   tapSpecBtn: function (e) {
     // 特殊键盘事件（删除和完成）
     var that = this;
@@ -51,13 +46,18 @@ Page({
       return false
     }
     var btnIndex = e.target.dataset.index;
+    var textCarNum = that.data.textArr.join("");
+    that.setData({
+      textCarNum:textCarNum
+    });
+    console.log(btnIndex)
     if (btnIndex == 0) {
       //说明是完成事件
      // var carreg = /^(([\u4e00-\u9fa5][a-zA-Z]|[\u4e00-\u9fa5]{2}\d{2}|[\u4e00-\u9fa5]{2}[a-zA-Z])[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$/;
     //  new Regex(@"^(([\u4e00-\u9fa5]{1}[A-Z]{1})[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$", RegexOptions.Compiled);
       var carreg = /^(([\u4e00-\u9fa5]{1}[A-Z]{1})[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$/;
       var carreg1 = /^(([\u4e00-\u9fa5]{1}[A-Z]{1})[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{6}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{6}[DdFf])$/;
-      if (!carreg.test(that.data.textValue)&&!carreg1.test(that.data.textValue)) {
+      if (!carreg.test(textCarNum)&&!carreg1.test(textCarNum)) {
         wx.showToast({
           title: '车牌号不正确',
           icon: 'success',
@@ -74,6 +74,7 @@ Page({
       }
     }
   },
+
   showKeyboard: function () {
     //输入框显示键盘状态
     var that = this;
@@ -82,6 +83,7 @@ Page({
       isKeyboard: true,
     })
   },
+
   hideKeyboard: function () {
     //点击页面隐藏键盘事件
     var that = this;
@@ -134,21 +136,27 @@ Page({
         this.keyboardValue = that.data.keyboard2;
       }
       that.data.textValue = that.data.textArr.join("");
+
       that.setData({
-        textValue: that.data.textValue,
+        textValue:that.data.textArr,
+        textCarNum: that.data.textValue,
         keyboardValue: this.keyboardValue,
         specialBtn: this.specialBtn,
         tapNum: this.tapNum,
       })
       return false
     }
+
     if (that.data.textArr.length >= 8) {
       return false;
     }
     that.data.textArr.push(tapVal);
-    that.data.textValue = that.data.textArr.join("");
+    
+    console.log(that.data.textArr)
+
     that.setData({
-      textValue: that.data.textValue,
+      textCarNum:that.data.textArr.join(""),
+      textValue: that.data.textArr,
       keyboardValue: that.data.keyboard2,
       specialBtn: true,
     })
@@ -159,48 +167,44 @@ Page({
       })
     }
   },
+
   onReady: function () {
     // 生命周期函数--监听页面初次渲染完成
     var that = this;
     //将keyboard1和keyboard2中的所有字符串拆分成一个一个字组成的数组
     that.data.keyboard1 = that.data.keyboard1.split('')
     that.data.keyboard2 = that.data.keyboard2.split('')
-    wx.getStorage({
-      key: 'userInfo',
-      success: function (res) {
-        var userInfo = res.data;
-        that.setData({
-          userInfo: userInfo
-        });
-        var carno = userInfo.carno;
-        if (carno != 'null' && carno != '' && carno != null) {
-          that.setData({
-            textValue: carno
-          });
- 
-        }
-      }
-    })
   },
+
+
   onShow: function () {
     //生命周期函数--监听页面显示
-    var that = this;
-    that.setData({
+    var self = this;
+    self.setData({
       flag: false
     })
-    var carno = that.data.textValue;
+    var carno = self.data.textValue;
     if (carno.length <9) {
-      that.setData({
-        keyboardValue: that.data.keyboard2,
+      self.setData({
+        keyboardValue: self.data.keyboard2,
         specialBtn: true,
         tapNum: true,       
         textArr: carno.split("")
       })
     }else{
-      that.setData({
-        keyboardValue: that.data.keyboard1
+      self.setData({
+        keyboardValue: self.data.keyboard1
+
       });
     }
+  },
+
+  newOil(){
+    const self = this;
+    self.data.newOil = !self.data.newOil
+    self.setData({
+      web_newOil:self.data.newOil
+    })
   },
 
   onLoad(options) {
@@ -209,6 +213,7 @@ Page({
     var length = self.data.text.length * self.data.size;
     var windowWidth = wx.getSystemInfoSync().windowWidth;
     self.setData({
+      web_newOil:self.data.newOil,
       img1:self.data.img1,
       length: length,
       windowWidth: windowWidth,
@@ -216,6 +221,8 @@ Page({
     });
     self.run2();
   },
+
+
   run2: function () {
     var self = this;
     var interval = setInterval(function () {
@@ -241,6 +248,8 @@ Page({
       }
     }, self.data.interval);
   },
+
+
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');

@@ -1,15 +1,16 @@
 <!--index1.wxml-->
 <view class="w710">
     <view class="search flex">
-        <input placeholder="请输入车牌号" class="font28 color6"></input>
-        <view class="search_btn" bindtap="intoPath" data-path="/pages/query1/query1">
+        <input placeholder="请输入车牌号" class="font28 color6" value="{{web_sForm.car_num}}" data-key="car_num" bindblur="changeBind"></input>
+        <view class="search_btn" bindtap="intoPath" data-path="/pages/query1/query1?car_num={{web_sForm.car_num}}">
             <image src="/images/search.png"></image>
         </view>
     </view>
     <view class="font28 color6" style="height:108rpx;line-height: 108rpx;">你绑定的车牌号</view>
     <view class="bind flex">
-        <view class="search_number bg font28 color1">陕A 45456</view>
-        <view class="search_number bg font28 color1">陕A 45456</view>
+        <block wx:for="{{web_mainData}}" wx:key="id">
+            <view class="search_number bg font28 color1" data-car_num="{{item.name}}" bindtap="tapSearch">{{item.name}}</view>
+        </block>
     </view>
     <view class="car_mark font28 flex">
         <image src="/images/car_mark.png"></image>

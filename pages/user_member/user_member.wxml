@@ -5,15 +5,15 @@
         <view class="banner_box color1 font28">
             <view class="user_left flex">
                 <image src="/images/member1.png"></image>
-                <text>卡号 4674867</text>
+                <text>卡号：{{web_mainData.memberID}}</text>
             </view>
             <view class="user_left flex">
                 <image src="/images/member2.png"></image>
-                <text>等级：普通</text>
+                <text>等级：{{web_mainData.level}}</text>
             </view>
             <view class="user_left flex">
                 <image src="/images/member3.png"></image>
-                <text>积分：80</text>
+                <text>积分：{{web_mainData.score}}</text>
             </view>
         </view>
     </view>

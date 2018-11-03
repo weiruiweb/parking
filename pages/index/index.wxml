@@ -2,7 +2,7 @@
 <view class="banner"  bindtap="hideKeyboard">
     <image src="/images/banner.png"></image>
 </view>
-<view class="w710" style="background: #feefaf;"  bindtap="hideKeyboard">
+<view class="w710" style="background: #feefaf;">
     <view id="marquee" class="flexRowBetween">
       <view class="horn"><image src="/images/horn.png"></image></view>
       <view class="marquee_right">
@@ -16,20 +16,21 @@
   </view>
 </view>
 <view class="page w710">
-  <!--输入框默认样式-->
-  <block wx:if="{{!isFocus}}">
-    <view class="input_in text_con flex" bindtap="showKeyboard">
-      <image src="/images/search.png" mode="aspectFit" class="search_icon"></image>
-      <text class="placeholder">{{placeholder}}</text>
+  
+    <block >
+    <view class="car_number bg flexRowBetween"  bindtap="showKeyboard">
+        <view class="nubmer_one">{{textValue[0]}}</view>
+        <view class="nubmer_one">{{textValue[1]}}</view>
+        <view class="nubmer_one">{{textValue[2]}}</view>
+        <view class="nubmer_one">{{textValue[3]}}</view>
+        <view class="nubmer_one">{{textValue[4]}}</view>
+        <view class="nubmer_one">{{textValue[5]}}</view>
+        <view class="nubmer_one">{{textValue[6]}}</view>
+        <view class="nubmer_one" wx:if="{{web_newOil==true}}">{{textValue[7]}}</view>
     </view>
   </block>
-  <!--输入框打开键盘样式-->
-  <block wx:else="{{isFocus}}">
-    <view class="input_in text_con_focus  flex" bindtap="bindFocus" >
-      {{textValue}}
-      <view animation="{{animationData}}">|</view>
-    </view>
-  </block>
+
+
   <!--键盘-->
   <block wx:if="{{isKeyboard}}">
     <view class="keyboard">
@@ -66,24 +67,16 @@
       <!--完成按钮 end-->
     </view>
   </block>
-</view>
 
-<view class="w710">
-    <view class="car_number bg flexRowBetween">
-        <view class="nubmer_one">陕</view>
-        <view class="nubmer_one">A</view>
-        <view class="nubmer_one">5</view>
-        <view class="nubmer_one">5</view>
-        <view class="nubmer_one">5</view>
-        <view class="nubmer_one">5</view>
-        <view class="nubmer_one">5</view>
-    </view>
-    <view class="change_number flexCenter color font28">
+
+
+
+    <view class="change_number flexCenter color font28" bindtap="newOil">
         <image src="/images/change.png"></image>
-        切换新能源车牌
+        {{web_newOil==false?'切换到新能源车牌':'切换到普通车牌'}}
     </view>
-    <view class="submit_info new_number"  bindtap="intoPath" data-path="/pages/index_parking_detail/index_parking_detail">
-       {{textValue}}
+    <view class="submit_info new_number"  bindtap="intoPath" data-path="/pages/index_parking_detail/index_parking_detail?carCode={{textCarNum}}">
+       {{textCarNum}}
         <image src="/images/close.png"></image>
     </view>
 </view>

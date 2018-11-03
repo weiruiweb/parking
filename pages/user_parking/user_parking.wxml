@@ -12,50 +12,53 @@
         <view class="record_cont font28">
             <view class="record_list flex">
                 <view class="record_left">车 牌 号:</view>
-                <view class="record_right">陕A 26566 </view>
+                <view class="record_right">{{web_mainData.carCode}}</view>
             </view>
             <view class="record_list flex">
                 <view class="record_left">停车时长:</view>
-                <view class="record_right color">2小时计时中 </view>
+                <view class="record_right color">{{web_time}} (计时中) </view>
             </view>
             <view class="record_list flex">
                 <view class="record_left">付款方式:</view>
-                <view class="record_right">微信支付  12元 </view>
+                <view class="record_right">微信支付{{web_mainData.paidMoney}}元 </view>
             </view>
             <view class="record_list flex">
                 <view class="record_left">停车时间:</view>
-                <view class="record_right">2018-09-09  23：00</view>
+                <view class="record_right">{{web_mainData.inTime}}</view>
             </view>
             <view class="record_list flex">
                 <view class="record_left"></view>
-                <view class="record_right">2018-09-09  24：00</view>
+                <view class="record_right">{{web_mainData.payTime}}</view>
             </view>
         </view>
     </view>
-    <view class="record1 w710"  style="{{currentId == 1?'display: block;':''}}">
-        <view class="record_cont font28">
-            <view class="record_list flex">
-                <view class="record_left">车 牌 号:</view>
-                <view class="record_right">陕A 26566 </view>
-            </view>
-            <view class="record_list flex">
-                <view class="record_left">停车时长:</view>
-                <view class="record_right">2小时</view>
-            </view>
-            <view class="record_list flex">
-                <view class="record_left">付款方式:</view>
-                <view class="record_right">微信支付  12元 </view>
-            </view>
-            <view class="record_list flex">
-                <view class="record_left">停车时间:</view>
-                <view class="record_right">2018-09-09  23：00</view>
-            </view>
-            <view class="record_list flex">
-                <view class="record_left"></view>
-                <view class="record_right">2018-09-09  24：00</view>
+
+    <block wx:for="{{web_parkData}}" wx:key="id">
+        <view class="record1 w710"  style="{{currentId == 1?'display: block;':''}}">
+            <view class="record_cont font28">
+                <view class="record_list flex">
+                    <view class="record_left">车 牌 号:</view>
+                    <view class="record_right"></view>
+                </view>
+                <view class="record_list flex">
+                    <view class="record_left">停车时长:</view>
+                    <view class="record_right">2小时</view>
+                </view>
+                <view class="record_list flex">
+                    <view class="record_left">付款方式:</view>
+                    <view class="record_right">微信支付  12元 </view>
+                </view>
+                <view class="record_list flex">
+                    <view class="record_left">停车时间:</view>
+                    <view class="record_right">2018-09-09  23：00</view>
+                </view>
+                <view class="record_list flex">
+                    <view class="record_left"></view>
+                    <view class="record_right">2018-09-09  24：00</view>
+                </view>
             </view>
         </view>
-    </view>
+    </block>
 </view>
 
 

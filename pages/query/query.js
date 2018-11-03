@@ -12,8 +12,21 @@ Page({
     accuracy: 16,//位置精准度 
     markers: [], 
     covers: [], 
+    mainData:[],
+    sForm:{
+      car_num:''
+    }
+    
   },
-   getlocation: function () { 
+
+
+  onLoad(options){
+    const self = this;
+    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    self.getMainData()
+  },
+
+  getlocation: function () { 
       var markers = [{ 
        latitude: 31.23, 
        longitude: 121.47, 
@@ -33,6 +46,49 @@ Page({
        covers: covers, 
       }) 
   },
+
+
+  getMainData(isNew){
+    const self = this;
+    if(isNew){
+      api.clearPageIndex(self);
+    }
+    const postData = {};
+    postData.paginate = api.cloneForm(self.data.paginate);
+    postData.token = wx.getStorageSync('token');
+    const callback = (res)=>{
+      console.log(res);
+      if(res.info.data.length>0){
+        self.data.mainData.push.apply(self.data.mainData,res.info.data);
+      }else{
+        self.data.isLoadAll = true;
+        api.showToast('没有更多了','fail');
+      };
+      self.setData({
+        web_mainData:self.data.mainData,
+      });
+    };
+    api.addressGet(postData,callback);
+  },
+
+  tapSearch(e){
+    const self = this;
+    console.log(e);
+    self.data.sForm.car_num = api.getDataSet(e,'car_num');
+    self.setData({
+      web_sForm:self.data.sForm
+    })
+  },
+
+  changeBind(e){
+    const self = this;
+    api.fillChange(e,self,'sForm');
+    console.log(self.data.sForm);
+    self.setData({
+      web_sForm:self.data.sForm
+    });  
+  },
+
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');

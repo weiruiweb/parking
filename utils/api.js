@@ -37,7 +37,23 @@ class Api extends Base{
         });
 
     }
+
+
   
+
+
+    getMemberInfo(param,callback){
+        var allParams ={
+            url:'Project/Cslf/getMemberInfo',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);
+    }    
+
 
 
     labelGet(param,callback){
@@ -62,7 +78,22 @@ class Api extends Base{
             }
         };
         this.request(allParams);
+    }    
+
+
+    GetCarInfo(param,callback){
+        var allParams ={
+            url:'Project/Cslf/parking',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);
     }
+
+    
 
     logGet(param,callback){
         var allParams ={
@@ -719,6 +750,18 @@ class Api extends Base{
         };
         this.request(allParams);
     }
+
+    directPay(param,callback){
+        var allParams ={
+            url:'Base/Pay/directPay',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);
+    }  
 
 
 

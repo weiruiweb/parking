@@ -14,12 +14,33 @@ Page({
   },
 
   onLoad(options){
-
+    const self = this;
+    
+    self.getMemberInfo()
   },
  
   intoPath(e){
     const self = this;
     api.pathTo(api.getDataSet(e,'path'),'nav');
+  },
+
+  getMemberInfo(){
+    const self  = this;
+    const postData = {
+      car_num:'陕AF38T6',
+      token:wx.getStorageSync('token'),  
+    };
+    const callback = (res)=>{
+      if(res){
+        self.data.mainData = res
+      }else{
+        api.showToast('网络故障','none')
+      };
+      self.setData({
+        web_mainData:self.data.mainData
+      })
+    }
+    api.getMemberInfo(postData,callback)
   },
 
   intoPathRedi(e){

@@ -12,23 +12,27 @@
 		</view>
 		<view class="input_list1 font28 flex">
 			<view class="input_before1">姓名:</view>
-			<view class="input_box"><input placeholder="请输入您的姓名"></input></view>
+			<view class="input_box"><input placeholder="请输入您的姓名" bindblur="changeBind" data-key="name" value="{{web_sForm.name}}"></input></view>
 		</view>
 		<view class="input_list1 font28 flex">
 			<view class="input_before1">电话:</view>
-			<view class="input_box"><input placeholder="请输入联系电话"></input></view>
+			<view class="input_box"><input placeholder="请输入联系电话" bindblur="changeBind" data-key="phone" value="{{web_sForm.phone}}"></input></view>
 		</view>
 		<view class="input_list1 font28 flexRowBetween">
 			<view class="input_before1">性别:</view>
 			<view class="input_box flex" style="width:40%;">
-				<view class="gender" data-gender="0" bindtap="gender">
-					<image src="{{gender == 0?'/images/select-a.png':'/images/select.png'}}"></image><text class="{{gender == 0?'color':'color6'}}">男</text>
+				<view class="gender" data-value="1" data-key="gender" bindtap="changeBind">
+					<image src="{{web_sForm.gender == 1?'/images/select-a.png':'/images/select.png'}}"></image><text class="{{web_sForm.gender == 0?'color':'color6'}}">男</text>
 				</view>
-				<view class="gender" data-gender="1" bindtap="gender">
-					<image src="{{gender == 1?'/images/select-a.png':'/images/select.png'}}"></image>
-					<text class="{{gender == 1?'color':'color6'}}">女</text>
+				<view class="gender" data-value="0" data-key="gender" bindtap="changeBind">
+					<image src="{{web_sForm.gender == 0?'/images/select-a.png':'/images/select.png'}}"></image>
+					<text class="{{web_sForm.gender == 1?'color':'color6'}}">女</text>
 				</view>
 			</view>
 		</view>
 	</view>
 </view>
+
+	<button class="submit_info" open-type="getUserInfo" bindgetuserinfo="submit" style="border-radius:50rpx;">
+	保存
+	</button>

@@ -1,19 +1,15 @@
 <!--index3.wxml-->
 <view class="user_banner">
-    <image src="/images/user_banner.jpg"></image>
     <view class="user_box w710">
         <view class="banner_left flex">
             <view class="" style="text-align:center;width:100%;">
                 <view class="user_img">
                   <open-data type="userAvatarUrl"></open-data>
                 </view>
-                <view class="font32 color6">微信名</view>
+                <view class="font32 color6"><open-data type="userNickName"></open-data></view>
             </view>
         </view>
-        <view class="banner_right flex font28 color6">
-            <image src="/images/user_icon1.png"></image>
-            积分 98
-        </view>
+     
     </view>
 </view>
 <view class="user_all font30 color3">
@@ -44,16 +40,7 @@
             <image src="/images/next_page.jpg"></image>
         </view>
     </view>
-    <view class="user_infor flexRowBetween w710" bindtap="userOrder">
-        <view class="user_left flexRowBetween">
-            <image src="/images/user_icon4.png"></image>
-            <text>自动缴费 </text>
-        </view>
-        <view class="next_page">
-            <image src="/images/next_page.jpg"></image>
-        </view>
-    </view>
-    <view class="user_infor flexRowBetween w710" bindtap="userOrder">
+    <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_member_in/user_member_in">
         <view class="user_left flexRowBetween">
             <image src="/images/user_icon5.png"></image>
             <text>消息</text>
@@ -79,8 +66,8 @@
     </view>
     <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
         <view class="nav_img">
-           <image src="/images/navbar3.png"></image>
+           <image src="/images/navbar3-a.png"></image>
         </view>
-        <view class="text">个人中心</view>
+        <view class="text this-text">个人中心</view>
     </view>
 </view>
