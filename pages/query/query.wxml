@@ -1,5 +1,6 @@
 <!--index1.wxml-->
 <view class="w710">
+    <view style="width:100%;height:20rpx;"></view>
     <view class="search flex">
         <input placeholder="请输入车牌号" class="font28 color6" value="{{web_sForm.car_num}}" data-key="car_num" bindblur="changeBind"></input>
         <view class="search_btn" bindtap="intoPath" data-path="/pages/query1/query1?car_num={{web_sForm.car_num}}">

@@ -1,5 +1,6 @@
 <!--index1.wxml-->
 <view class="w710">
+    <view style="width:100%;height:20rpx;"></view>
     <view class="search flex">
         <input placeholder="请输入车牌号" class="font28 color6"></input>
         <view class="search_btn">

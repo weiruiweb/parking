@@ -10,7 +10,6 @@ view{
 	border:solid 1px #e0e0e0;
 	border-radius:50rpx;
 	padding:0px 3%;
-	margin-top:20rpx;
 }
 .search input{
 	width:80%;
