@@ -1,6 +1,7 @@
 <!--index3.wxml-->
 <view class="w710">
     <view class="user_banner">
+        <view style="width:100%;height:20rpx;"></view>
         <image src="/images/member_banner.jpg"></image>
         <view class="banner_box color1 font28">
             <view class="user_left flex">
