@@ -18,10 +18,10 @@
       </view>
       <view class="handle_right flexRowBetween">
         <view class="edit">
-          <image src="/images/edit.jpg"></image> 编辑
+          <image src="/images/edit.png"></image> 编辑
         </view>
         <view class="edit">
-          <image src="/images/del.jpg"></image> 删除
+          <image src="/images/del.png"></image> 删除
         </view>
       </view>
     </view>
@@ -45,10 +45,10 @@
       </view>
       <view class="handle_right flexRowBetween">
         <view class="edit">
-          <image src="/images/edit.jpg"></image> 编辑
+          <image src="/images/edit.png"></image> 编辑
         </view>
         <view class="edit">
-          <image src="/images/del.jpg"></image> 删除
+          <image src="/images/del.png"></image> 删除
         </view>
       </view>
     </view>
