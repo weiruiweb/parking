@@ -9,9 +9,9 @@
         <view class="handle_left flex  {{item.isdefault=='1'?'color':''}}" bindtap="{{item.isdefault=='0'?'updateAddress':''}}" data-id="{{item.id}}">
           <image src="{{item.isdefault=='1'?'/images/select1-a.png':'/images/select1.png'}}"></image> {{item.isdefault=='0'?'设为默认车牌':'默认车牌'}}
         </view>
-        <view class="handle_right flexRowBetween">
+        <view class="handle_right flexRowBetween" style="justify-content:flex-end">
         
-          <view class="edit" data-id="{{item.id}}" bindtap="deleteAddress" style="justify-content:flex-end"> 
+          <view class="edit" data-id="{{item.id}}" bindtap="deleteAddress"> 
             <image src="/images/del.png"></image> 删除
           </view>
         </view>

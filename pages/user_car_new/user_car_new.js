@@ -26,7 +26,7 @@ Page({
     sForm:{
       name:''
     },
-    newOil:true
+    newOil:false
   },
   onLoad: function () {
    
@@ -61,7 +61,7 @@ Page({
         })
       } else {
         self.setData({
-          flag: true,
+          textValue:self.data.textArr,
           isKeyboard: false,
           isFocus: false
         });
@@ -132,7 +132,7 @@ Page({
       self.data.textValue = self.data.textArr.join("");
 
       self.setData({
-        textValue:that.data.textArr,
+        textValue:self.data.textArr,
         textCarNum: self.data.textValue,
         keyboardValue: this.keyboardValue,
         specialBtn: this.specialBtn,
@@ -144,7 +144,10 @@ Page({
     if (self.data.textArr.length >= 8) {
       return false;
     }
-    self.data.textArr.push(tapVal);
+    if((self.data.newOil&&self.data.textArr.length<8)||self.data.textArr.length<7){
+      self.data.textArr.push(tapVal);
+    };
+    
     
     console.log(self.data.textArr)
 
@@ -205,6 +208,7 @@ Page({
 
   newOil(){
     const self = this;
+    self.data.newOil = !self.data.newOil
     self.setData({
       web_newOil:self.data.newOil
     })
@@ -221,6 +225,11 @@ Page({
     const callback = (data)=>{
       wx.hideLoading();
       api.dealRes(data);
+      setTimeout(function(){
+          wx.navigateBack({
+            delta: 1
+          });
+        },1000);
     };
     api.addressAdd(postData,callback);
   },
