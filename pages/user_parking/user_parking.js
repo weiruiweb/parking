@@ -8,7 +8,8 @@ Page({
   data: {
    currentId:0,
    isLoadAll:false,
-   carData:[]
+   carData:[],
+   parkData:[]
   },
 
   onLoad(options){
@@ -21,7 +22,7 @@ Page({
   tab(e){
     const self = this;
     if(e.currentTarget.dataset.id==1){
-      self.orderGet();
+      self.orderGet(true);
     };
     self.setData({
       currentId:e.currentTarget.dataset.id
@@ -64,11 +65,11 @@ Page({
     };
     const callback = (res)=>{
       console.log(res)
-      if(res){
+      if(res.resCode==0){
         self.data.mainData = res,
         self.data.buttonClicked=false
       }else{
-        api.showToast('网络故障','none')
+        api.showToast('没有停车信息','none')
       };
       wx.hideLoading();
       self.setData({
@@ -85,6 +86,11 @@ Page({
       paginate:api.cloneForm(self.data.paginate),
       token:wx.getStorageSync('token'),
     };
+    postData.searchItem = {
+      thirdapp_id:12,
+      type:5,
+      user_no:wx.getStorageSync('info').user_no
+    }
     const callback = (res)=>{
       if(res.info.data.length>0){
         self.data.parkData.push.apply(self.data.parkData,res.info.data);   

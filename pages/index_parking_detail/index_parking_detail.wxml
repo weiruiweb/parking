@@ -39,7 +39,7 @@
 </view>
 <view class="credit font32 color6 flexCenter">
     可抵扣积分：{{web_maxScore}}积分
-    <image class="{{web_mainData.paidMoney==web_mainData.chargeMoney?'no':'yes'}}" src="/images/parking4.png" bindtap="changePayType"></image>
+    <image src="{{web_mainData.paidMoney==web_mainData.chargeMoney?'/images/parking4.png':'/images/parking4-a.png'}}"  bindtap="changePayType"></image>
 </view>
 <view class="credit font32 color6 flexCenter" style="color:#eb0096">
     可用积分:{{web_memberData.score}}积分

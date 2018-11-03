@@ -49,10 +49,15 @@ Page({
       token:wx.getStorageSync('token'),  
     };
     const callback = (res)=>{
-      if(res){
+      if(res.score){
         self.data.mainData = res
       }else{
-        api.showToast('网络故障','none')
+        api.showToast('该车牌号未绑定会员','none')
+        setTimeout(function(){
+            wx.navigateBack({
+              delta: 1
+            });
+          },1000);
       };
       self.setData({
         web_mainData:self.data.mainData

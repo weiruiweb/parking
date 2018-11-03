@@ -91,11 +91,12 @@ page{
 	line-height:90rpx;
 	border-radius:10rpx;
 	position:relative;
+  color:#666
 }
 .submit_info image{
 	width:40rpx;
 	height:40rpx;
-	position:absolute;
+
 	top:24rpx;
 	right:38rpx;
 }

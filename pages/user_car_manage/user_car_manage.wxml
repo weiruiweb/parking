@@ -1,58 +1,25 @@
 <!--User.wxml-->
-<view style="border-bottom:solid 1px #eb0096;">
-  <view class="w710 flex" id="number">
-  	<view class="number_car">陕</view>
-  	<view class="number_car">A</view>
-  	<view class="circle">●</view>
-  	<view class="number_car">9</view>
-  	<view  class="number_car">2</view>
-  	<view class="number_car">6</view>
-  	<view  class="number_car">9</view>
-  	<view class="number_car">8</view>
-    <view class="number_car">5</view>
-  </view>
-  <view class="w710 flex" style="background:#f3bbdf;">
-    <view class="address_handle flex font28">
-      <view class="handle_left flex  {{currentId== 0?'color':''}}" data-id="0"  bindtap="choose">
-        <image src="{{currentId== 0?'/images/select_a.png':'/images/select.png'}}"></image> 设为默认地址
-      </view>
-      <view class="handle_right flexRowBetween">
-        <view class="edit">
-          <image src="/images/edit.png"></image> 编辑
+<block wx:for = "{{web_mainData}}" wx:key="id">
+  <view style="border-bottom:solid 1px #eb0096;">
+    <view class="w710 flex" id="number">
+    	<view class="number_car" style="width:100%">{{item.name}}</view>
+    </view>
+    <view class="w710 flex" style="background:#f3bbdf;">
+      <view class="address_handle flex font28">
+        <view class="handle_left flex  {{item.isdefault=='1'?'color':''}}" bindtap="{{item.isdefault=='0'?'updateAddress':''}}" data-id="{{item.id}}">
+          <image src="{{item.isdefault=='1'?'/images/select1-a.png':'/images/select1.png'}}"></image> {{item.isdefault=='0'?'设为默认车牌':'默认车牌'}}
         </view>
-        <view class="edit">
-          <image src="/images/del.png"></image> 删除
+        <view class="handle_right flexRowBetween">
+        
+          <view class="edit" data-id="{{item.id}}" bindtap="deleteAddress" style="justify-content:flex-end"> 
+            <image src="/images/del.png"></image> 删除
+          </view>
         </view>
       </view>
     </view>
   </view>
-</view>
-<view style="border-bottom:solid 1px #eb0096;">
-  <view class="w710 flex" id="number">
-    <view class="number_car">陕</view>
-    <view class="number_car">A</view>
-    <view class="circle">●</view>
-    <view class="number_car">9</view>
-    <view  class="number_car">2</view>
-    <view class="number_car">6</view>
-    <view  class="number_car">9</view>
-    <view class="number_car">8</view>
-  </view>
-  <view class="w710 flex" style="background:#f3bbdf;">
-    <view class="address_handle flex font28">
-      <view class="handle_left flex  {{currentId== 0?'color':''}}" data-id="0"  bindtap="choose">
-        <image src="{{currentId== 0?'/images/select_a.png':'/images/select.png'}}"></image> 设为默认地址
-      </view>
-      <view class="handle_right flexRowBetween">
-        <view class="edit">
-          <image src="/images/edit.png"></image> 编辑
-        </view>
-        <view class="edit">
-          <image src="/images/del.png"></image> 删除
-        </view>
-      </view>
-    </view>
-  </view>
-</view>
+</block>
+
+
 
 <button class="submit_info" bindtap="intoPath" data-path="/pages/user_car_new/user_car_new">绑定新车牌</button>

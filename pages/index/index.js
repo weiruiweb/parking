@@ -33,25 +33,28 @@ Page({
     textArr: [],
     textValue: '陕A',
     placeholder: '输入或拍照录入车牌',
-    newOil:false
+    newOil:false,
+    carNoData:[]
   },
 
 
 
 
   tapSpecBtn: function (e) {
+    console.log('tapSpecBtn',this.data.flag)
     // 特殊键盘事件（删除和完成）
-    var that = this;
-    if (that.data.flag) {
-      return false
-    }
+    var self = this;
+    if (self.data.flag) {
+      return false;
+    };
+    console.log(self.data.flag)
     var btnIndex = e.target.dataset.index;
-    var textCarNum = that.data.textArr.join("");
-    that.setData({
+    var textCarNum = self.data.textArr.join("");
+    self.setData({
       textCarNum:textCarNum
     });
-    console.log(btnIndex)
     if (btnIndex == 0) {
+
       //说明是完成事件
      // var carreg = /^(([\u4e00-\u9fa5][a-zA-Z]|[\u4e00-\u9fa5]{2}\d{2}|[\u4e00-\u9fa5]{2}[a-zA-Z])[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$/;
     //  new Regex(@"^(([\u4e00-\u9fa5]{1}[A-Z]{1})[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$", RegexOptions.Compiled);
@@ -66,8 +69,22 @@ Page({
           duration: 2000
         })
       } else {
-        that.setData({
-          flag: true,
+
+        console.log('textCarNum',textCarNum)
+        
+        if(wx.getStorageSync('carNo')&&Array.isArray(wx.getStorageSync('carNo'))){
+          self.data.carNoData = wx.getStorageSync('carNo');
+        }else{
+          self.data.carNoData = [];
+        };
+        self.data.carNoData.unshift(textCarNum);
+        wx.setStorageSync('carNo',self.data.carNoData);
+        self.setData({
+          web_carNoData:self.data.carNoData 
+        });
+        self.data.textArr = ['陕','A'];
+        self.setData({
+          textValue:self.data.textArr,
           isKeyboard: false,
           isFocus: false
         });
@@ -77,31 +94,43 @@ Page({
 
   showKeyboard: function () {
     //输入框显示键盘状态
-    var that = this;
-    that.setData({
+    var self = this;
+    self.setData({
       isFocus: true,
       isKeyboard: true,
     })
   },
 
+  deleteCarNo(e){
+    const self = this;
+    var index = api.getDataSet(e,'index');
+    self.data.carNoData = wx.getStorageSync('carNo');
+    console.log(self.data.carNoData);
+    self.data.carNoData.splice(index,1);
+    wx.setStorageSync('carNo',self.data.carNoData);
+    self.setData({
+      web_carNoData:self.data.carNoData 
+    });
+  },
+
   hideKeyboard: function () {
     //点击页面隐藏键盘事件
-    var that = this;
-    if (that.data.isKeyboard) {
+    var self = this;
+    if (self.data.isKeyboard) {
       //说明键盘是显示的，再次点击要隐藏键盘
-      if (that.data.textValue) {
-        that.setData({
+      if (self.data.textValue) {
+        self.setData({
           isKeyboard: false
         })
       } else {
-        that.setData({
+        self.setData({
           isKeyboard: false,
           isFocus: false,
         })
       }
     }else{
-      var that = this;
-    that.setData({
+      var self = this;
+    self.setData({
       isFocus: true,
       isKeyboard: true,
     })
@@ -110,7 +139,7 @@ Page({
 
   tapKeyboard: function (e) {
     //键盘事件
-    var that = this;
+    var self = this;
     //获取键盘点击的内容，并将内容赋值到textarea框中
     var tapIndex = e.target.dataset.index;
     var tapVal = e.target.dataset.val;
@@ -119,27 +148,27 @@ Page({
     var tapNum;
     if (tapVal == "巛") {
       //说明是删除
-      that.data.textArr.pop();
-      if (that.data.textArr.length == 0) {
+      self.data.textArr.pop();
+      if (self.data.textArr.length == 0) {
         //说明没有数据了，返回到省份选择键盘
         this.specialBtn = false;
         this.tapNum = false;
-        this.keyboardValue = that.data.keyboard1;
-      } else if (that.data.textArr.length == 1) {
+        this.keyboardValue = self.data.keyboard1;
+      } else if (self.data.textArr.length == 1) {
         //只能输入字母
         this.tapNum = false;
         this.specialBtn = true;
-        this.keyboardValue = that.data.keyboard2;
+        this.keyboardValue = self.data.keyboard2;
       } else {
         this.specialBtn = true;
         this.tapNum = true;
-        this.keyboardValue = that.data.keyboard2;
+        this.keyboardValue = self.data.keyboard2;
       }
-      that.data.textValue = that.data.textArr.join("");
+      self.data.textValue = self.data.textArr.join("");
 
-      that.setData({
-        textValue:that.data.textArr,
-        textCarNum: that.data.textValue,
+      self.setData({
+        textValue:self.data.textArr,
+        textCarNum: self.data.textValue,
         keyboardValue: this.keyboardValue,
         specialBtn: this.specialBtn,
         tapNum: this.tapNum,
@@ -147,22 +176,25 @@ Page({
       return false
     }
 
-    if (that.data.textArr.length >= 8) {
+    if (self.data.textArr.length >= 8) {
       return false;
     }
-    that.data.textArr.push(tapVal);
+    if((self.data.newOil&&self.data.textArr.length<8)||self.data.textArr.length<7){
+      self.data.textArr.push(tapVal);
+    };
     
-    console.log(that.data.textArr)
+    
+    console.log(self.data.textArr)
 
-    that.setData({
-      textCarNum:that.data.textArr.join(""),
-      textValue: that.data.textArr,
-      keyboardValue: that.data.keyboard2,
+    self.setData({
+      textCarNum:self.data.textArr.join(""),
+      textValue: self.data.textArr,
+      keyboardValue: self.data.keyboard2,
       specialBtn: true,
     })
-    if (that.data.textArr.length > 1) {
+    if (self.data.textArr.length > 1) {
       //展示数字键盘
-      that.setData({
+      self.setData({
         tapNum: true
       })
     }
@@ -170,10 +202,10 @@ Page({
 
   onReady: function () {
     // 生命周期函数--监听页面初次渲染完成
-    var that = this;
+    var self = this;
     //将keyboard1和keyboard2中的所有字符串拆分成一个一个字组成的数组
-    that.data.keyboard1 = that.data.keyboard1.split('')
-    that.data.keyboard2 = that.data.keyboard2.split('')
+    self.data.keyboard1 = self.data.keyboard1.split('')
+    self.data.keyboard2 = self.data.keyboard2.split('')
   },
 
 
@@ -183,6 +215,10 @@ Page({
     self.setData({
       flag: false
     })
+    self.data.carNoData = api.jsonToArray(wx.getStorageSync('carNo'),'unshift');
+    self.setData({
+      web_carNoData:self.data.carNoData 
+    });
     var carno = self.data.textValue;
     if (carno.length <9) {
       self.setData({
@@ -194,7 +230,6 @@ Page({
     }else{
       self.setData({
         keyboardValue: self.data.keyboard1
-
       });
     }
   },
@@ -209,6 +244,10 @@ Page({
 
   onLoad(options) {
     const self = this;
+    self.data.carNoData = [];
+    if(!wx.getStorageSync('carNo')){
+      wx.setStorageSync('carNo',carNoData)
+    };
     console.log(self.data.img1);
     var length = self.data.text.length * self.data.size;
     var windowWidth = wx.getSystemInfoSync().windowWidth;

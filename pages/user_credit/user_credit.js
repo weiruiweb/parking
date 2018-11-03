@@ -12,7 +12,6 @@ Page({
     startTime:'',
     endTime:'',
     searchItem:{
-      type:3,
       status:1
     },
     complete_api:[],
@@ -27,7 +26,8 @@ Page({
     });
     self.data.paginate = api.cloneForm(getApp().globalData.paginate);
     self.getMainData();
-    self.getAddressData()
+    self.getAddressData();
+    
   },
 
   intoPath(e){
@@ -46,6 +46,7 @@ Page({
     });
     self.getMainData(true);
 
+
   },
 
   getAddressData(){
@@ -59,13 +60,11 @@ Page({
       console.log(res);
       if(res.info.data.length>0){
         self.data.carData = res.info.data[0]
-      }else{
-        api.showToast('没有停车信息','none');
-      };
+      }
       self.setData({
         web_carData:self.data.carData,
       });
-      self.GetCarInfo()
+      self.getMemberInfo()
     };
     api.addressGet(postData,callback);
   },

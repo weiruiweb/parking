@@ -8,7 +8,7 @@
     </view>
 </view>
 <view class="w710">
-    <view class="record w710" style="{{currentId == 0?'display: block;':''}}">
+    <view class="record w710" style="{{currentId == 0?'display: block;':''}}" wx:if="{{web_mainData}}">
         <view class="record_cont font28">
             <view class="record_list flex">
                 <view class="record_left">车 牌 号:</view>
@@ -38,24 +38,18 @@
             <view class="record_cont font28">
                 <view class="record_list flex">
                     <view class="record_left">车 牌 号:</view>
-                    <view class="record_right"></view>
+                    <view class="record_right">{{item.payAfter.carCode}}</view>
                 </view>
-                <view class="record_list flex">
-                    <view class="record_left">停车时长:</view>
-                    <view class="record_right">2小时</view>
-                </view>
+                
                 <view class="record_list flex">
                     <view class="record_left">付款方式:</view>
-                    <view class="record_right">微信支付  12元 </view>
+                    <view class="record_right">微信支付{{item.payAfter.paidMoney}}元 积分支付{{item.payAfter.JMMoney}}分</view>
                 </view>
                 <view class="record_list flex">
-                    <view class="record_left">停车时间:</view>
-                    <view class="record_right">2018-09-09  23：00</view>
+                    <view class="record_left">支付时间:</view>
+                    <view class="record_right">{{item.payAfter.payTime}}</view>
                 </view>
-                <view class="record_list flex">
-                    <view class="record_left"></view>
-                    <view class="record_right">2018-09-09  24：00</view>
-                </view>
+              
             </view>
         </view>
     </block>

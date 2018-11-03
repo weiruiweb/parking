@@ -101,8 +101,7 @@ Page({
     var order_id = self.data.order_id;
     const postData = {
       token:wx.getStorageSync('token'),
-      wxPay:self.data.mainData.paidMoney,
-      wxPayStatus:0,
+      
       data:{
         payAfter:{
           data:{
@@ -118,13 +117,22 @@ Page({
         }
       },
     };
+    if(self.data.mainData.paidMoney!=0){
+      postData.wxPay=self.data.mainData.paidMoney,
+      postData.wxPayStatus=0
+    };
     const callback = (res)=>{
       wx.hideLoading();
       console.log(res)
       if(res.solely_code==100000){
         const payCallback=(payData)=>{
           if(payData==1){
-            api.showToast('支付成功','none')      
+            api.showToast('支付成功','none')
+            setTimeout(function(){
+              wx.navigateBack({
+                delta: 1
+              });
+            },1000);     
           }
         };
         api.realPay(res.info,payCallback);   
