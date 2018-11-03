@@ -88,9 +88,8 @@ page{
 	background:#fff;
 	display:flex;
 	justify-content:center;
-	border-top:solid 1px #dbdbdb;
 	align-items:center;
-	box-shadow:5rpx 0 15rpx #f44fb8;
+	box-shadow:5rpx 0 15rpx #fcabdf;
 }
 .nav_img image{
 	width:66rpx;
