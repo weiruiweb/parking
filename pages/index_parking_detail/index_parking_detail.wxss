@@ -60,6 +60,8 @@
 	color:#f9d948;
 	font-size: 70rpx;
 	border-bottom: solid 1px #f9d948;
+	width:196rpx;
+	text-align: center;
 }
 .pay_unit{
 	width: 50rpx;

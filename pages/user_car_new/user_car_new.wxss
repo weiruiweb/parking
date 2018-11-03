@@ -42,13 +42,12 @@ page{
 	width:4.5%;
 }
 .number_car{
-	width:9.5%;
+	width:10.5%;
 	height:72rpx;
 	border: solid 1px #e0e0e0;
 	border-radius: 10rpx;
 	line-height:72rpx;
-	text-align:center;
-  margin:0 1%;
+	text-align:center
 }
 .number_car input{
 	width:100%;
@@ -60,7 +59,7 @@ page{
 	text-align: center;
 }
 #number{
-	height:160rpx;
+	margin-bottom: 30rpx;
 }
 .submit_info{
 	margin-top:140rpx;
@@ -227,27 +226,4 @@ page{
   width: 22rpx;
   height: 22rpx;
   margin: 0 10rpx;
-}
-.address_handle{
-  width:100%;
-  height:70rpx;
-}
-.handle_left{
-  width:70%;
-}
-.handle_right{
-  width:30%;
-}
-.handle_left image{
-  width:28rpx;
-  height:28rpx;
-  margin-right:10rpx;
-}
-.edit image{
-  width:26rpx;
-  height:26rpx;
-  margin-right:10rpx;
-}
-.submit_info{
-  margin-top:180rpx;
 }

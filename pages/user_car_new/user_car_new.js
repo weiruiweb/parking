@@ -209,6 +209,9 @@ Page({
       web_newOil:self.data.newOil
     })
   },
+
+
+
   addressAdd(){
     const self = this;
     const postData = {};
@@ -221,8 +224,5 @@ Page({
     };
     api.addressAdd(postData,callback);
   },
-  intoPath(e){
-    const self = this;
-    api.pathTo(api.getDataSet(e,'path'),'nav');
-  },
+
 })

@@ -1,0 +1,60 @@
+<!--User.wxml-->
+<view class="user_banner flex" bindtap="hideKeyboard">
+    <image src="/images/logo.png"></image>
+</view>
+
+<view class="w710 flexRowBetween" id="number">
+
+		<view class="number_car">{{textValue[0]}}</view>
+		<view class="number_car">{{textValue[1]}}</view>
+
+	<view class="circle">●</view>
+	<view class="number_car" bindtap="showKeyboard">{{textValue[2]}}</view>
+	<view  class="number_car" bindtap="showKeyboard">{{textValue[3]}}</view>
+	<view class="number_car" bindtap="showKeyboard">{{textValue[4]}}</view>
+	<view  class="number_car" bindtap="showKeyboard">{{textValue[5]}}</view>
+	<view class="number_car" bindtap="showKeyboard">{{textValue[6]}}</view>
+  <view class="number_car" wx:if="{{web_newOil}}">{{textValue[7]}}</view>
+	<view class="number_car" style="border:dashed 1px #999;width:12%;" bindtap="newOil" wx:else>
+		<view  class="color9 font32" >+</view>
+		<view class="color9 font22">新能源</view>
+	</view>
+</view>
+  <!--键盘-->
+  <block wx:if="{{isKeyboard}}">
+    <view class="keyboard">
+ 
+      <!--省份简写键盘-->
+      <view class="td td_nor" wx:for="{{keyboardValue}}" wx:for-index="idx" wx:for-item="itemName" bindtap="tapKeyboard" wx:key="keyboardValue" data-index="{{idx}}" data-val="{{itemName}}" hover-class="board_bg" hover-start-time="0" hover-stay-time="80">
+        {{itemName}}
+      </view>
+ 
+      <!--数字键盘不可点击-->
+      <view wx:if="{{specialBtn && !tapNum}}" class="td td_num board_bg" wx:for="{{keyboardNumber}}" wx:for-index="idx" wx:for-item="itemName"  wx:key="keyboardNumber">
+        {{itemName}}
+      </view>
+ 
+      <!--数字键盘可点击-->
+      <view wx:if="{{specialBtn && tapNum}}" class="td td_num" wx:for="{{keyboardNumber}}" wx:for-index="idx" wx:for-item="itemName" bindtap="tapKeyboard" data-index="{{idx}}" data-val="{{itemName}}" hover-class="board_bg" hover-start-time="0" hover-stay-time="80" wx:key="keyboardNumber">
+        {{itemName}}
+      </view>
+ 
+      <!--字母键盘-->
+      <view wx:if="{{specialBtn}}" class="td td_num" wx:for="{{keyboardAlph}}" wx:for-index="idx" wx:for-item="itemName" wx:key="itemName"  hover-class="board_bg" hover-start-time="0" hover-stay-time="80">
+          <view class="del_icon" wx:if="{{idx == 19}}" bindtap="tapKeyboard" data-index="{{idx}}" data-val="{{itemName}}">
+            <image src="/images/close.png" mode="aspectFit" data-val="{{itemName}}" class="delect_img"></image>
+          </view>
+          <view wx:elif="{{idx != 19}}"  bindtap="tapKeyboard" data-index="{{idx}}" data-val="{{itemName}}">
+          {{itemName}}
+          </view>
+      </view>
+ 
+      <!--完成按钮 start-->
+      <view class="td td_spec_fin" wx:for="{{keyboard2For}}" wx:key="itemName"   wx:for-index="idx" wx:for-item="itemName" bindtap="tapSpecBtn" data-index="{{idx}}" data-val="{{itemName}}" wx:if="{{specialBtn}}" hover-class="board_bg_spec" hover-start-time="0" hover-stay-time="80">
+        {{itemName}}
+      </view>
+      <!--完成按钮 end-->
+    </view>
+  </block>
+
+<button class="submit_info" bindtap="submit">绑定车牌</button>
