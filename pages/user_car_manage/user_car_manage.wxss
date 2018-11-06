@@ -254,4 +254,5 @@ page{
 }
 .submit_info{
   margin-top:180rpx;
+  margin-bottom: 80rpx;
 }
