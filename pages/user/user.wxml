@@ -55,13 +55,13 @@
         <view class="nav_img">
           <image src="/images/navbar1.png"></image>
         </view>
-        <view class="text">首页</view>
+        <view class="text">车辆管理</view>
     </view>
     <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/query/query">
         <view class="nav_img">
            <image src="/images/navbar2.png"></image>
         </view>
-        <view class="text">分类</view>
+        <view class="text">车辆查询</view>
     </view>
     <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
         <view class="nav_img">
