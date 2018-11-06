@@ -92,55 +92,63 @@ Page({
 
 
 
-  pay(order_id){
-    const self = this;
-    if(self.data.buttonClicked){
-      api.showToast('数据有误','none')
-    }
-    wx.showLoading()
-    var order_id = self.data.order_id;
-    const postData = {
-      token:wx.getStorageSync('token'),
-      
-      data:{
-        payAfter:{
-          data:{
-            carCode:self.data.carCode,
-            chargeMoney:self.data.mainData.chargeMoney,
-            paidMoney:self.data.mainData.paidMoney,
-            JMMoney:self.data.mainData.chargeMoney - self.data.mainData.paidMoney,
-            payTime:self.data.mainData.payTime,
-            chargeType:11,
-            chargeSource:"3"
-          },
-          url:"AddChargeInfo"
-        }
-      },
-    };
-    if(self.data.mainData.paidMoney!=0){
-      postData.wxPay=self.data.mainData.paidMoney,
-      postData.wxPayStatus=0
-    };
-    const callback = (res)=>{
-      wx.hideLoading();
-      console.log(res)
-      if(res.solely_code==100000){
-        const payCallback=(payData)=>{
-          if(payData==1){
-            api.showToast('支付成功','none')
+    pay(order_id){
+      const self = this;
+      if(self.data.buttonClicked){
+        api.showToast('数据有误','none')
+      }
+      wx.showLoading();
+      const postData = {
+        token:wx.getStorageSync('token'),
+        data:{
+          payAfter:{
+            data:{
+              carCode:self.data.carCode,
+              chargeMoney:self.data.mainData.chargeMoney,
+              paidMoney:self.data.mainData.paidMoney,
+              JMMoney:self.data.mainData.chargeMoney - self.data.mainData.paidMoney,
+              payTime:self.data.mainData.payTime,
+              chargeType:11,
+              chargeSource:"3"
+            },
+            url:"AddChargeInfo"
+          }
+        },
+      };
+      if(self.data.mainData.paidMoney!=0){
+        postData.wxPay=self.data.mainData.paidMoney,
+        postData.wxPayStatus=0
+      };
+      const callback = (res)=>{
+        console.log(res)
+        if(res.solely_code==100000){
+          api.showToast('支付成功','none')
             setTimeout(function(){
               wx.navigateBack({
                 delta: 1
               });
-            },1000);     
+            },1000);    
+
+          if(self.data.mainData.paidMoney!=0){
+              const payCallback=(payData)=>{
+              if(payData==1){
+                api.showToast('支付成功','none')
+                setTimeout(function(){
+                  wx.navigateBack({
+                    delta: 1
+                  });
+                },1000);     
+              }else{
+                api.showToast('调起微信支付失败','none')
+              };
+            api.realPay(res.info,payCallback);    
           }
         };
-        api.realPay(res.info,payCallback);   
+
       }else{
         api.showToast('支付失败','none')
-      }
-         
-    };
+      }  
+    }
     api.directPay(postData,callback);
   },
 
