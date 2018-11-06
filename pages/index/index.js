@@ -36,10 +36,6 @@ Page({
     newOil:false,
     carNoData:[]
   },
-
-
-
-
   tapSpecBtn: function (e) {
     console.log('tapSpecBtn',this.data.flag)
     // 特殊键盘事件（删除和完成）
@@ -54,10 +50,7 @@ Page({
       textCarNum:textCarNum
     });
     if (btnIndex == 0) {
-
       //说明是完成事件
-     // var carreg = /^(([\u4e00-\u9fa5][a-zA-Z]|[\u4e00-\u9fa5]{2}\d{2}|[\u4e00-\u9fa5]{2}[a-zA-Z])[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$/;
-    //  new Regex(@"^(([\u4e00-\u9fa5]{1}[A-Z]{1})[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$", RegexOptions.Compiled);
       var carreg = /^(([\u4e00-\u9fa5]{1}[A-Z]{1})[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$/;
       var carreg1 = /^(([\u4e00-\u9fa5]{1}[A-Z]{1})[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{6}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{6}[DdFf])$/;
       if (!carreg.test(textCarNum)&&!carreg1.test(textCarNum)) {
@@ -69,9 +62,7 @@ Page({
           duration: 2000
         })
       } else {
-
         console.log('textCarNum',textCarNum)
-        
         if(wx.getStorageSync('carNo')&&Array.isArray(wx.getStorageSync('carNo'))){
           self.data.carNoData = wx.getStorageSync('carNo');
         }else{
