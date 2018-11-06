@@ -8,7 +8,7 @@
       <view class="marquee_right">
         <view class="marquee_box">
           <view class="marquee_text font28 flex" style="{{orientation}}:{{marqueeDistance2}}px;width:100%;height:100%;">
-            <text>技术支持:西安纯粹科技有限公司技术支持:西安纯粹科技有限公司技术支持:西安纯粹科技有限公司</text>
+            <text>技术支持:陕西泛想企业文化传播有限公司;陕西泛想企业文化传播有限公司;陕西泛想企业文化传播有限公司;陕西泛想企业文化传播有限公司;陕西泛想企业文化传播有限公司</text>
             <text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{text}}</text>
           </view>
         </view>
