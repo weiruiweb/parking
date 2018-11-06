@@ -16,7 +16,6 @@
   </view>
 </view>
 <view class="page w710">
-  
     <block >
     <view class="car_number bg flexRowBetween"  bindtap="showKeyboard">
         <view class="nubmer_one">{{textValue[0]}}</view>
@@ -67,9 +66,6 @@
       <!--完成按钮 end-->
     </view>
   </block>
-
-
-
 
     <view class="change_number flexCenter color font28" bindtap="newOil">
         <image src="/images/change.png"></image>

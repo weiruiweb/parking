@@ -26,7 +26,8 @@ Page({
     sForm:{
       name:''
     },
-    newOil:false
+    newOil:false,
+    buttonClick:true
   },
   onLoad: function () {
    
@@ -39,16 +40,10 @@ Page({
       return false
     }
     var btnIndex = e.target.dataset.index;
-    self.data.textCarNum = self.data.textArr.join("");
-    self.data.sForm.name = self.data.textArr.join("");
-    self.setData({
-      textCarNum:self.data.textCarNum
-    });
- 
+   
+  
     if (btnIndex == 0) {
       //说明是完成事件
-     // var carreg = /^(([\u4e00-\u9fa5][a-zA-Z]|[\u4e00-\u9fa5]{2}\d{2}|[\u4e00-\u9fa5]{2}[a-zA-Z])[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$/;
-    //  new Regex(@"^(([\u4e00-\u9fa5]{1}[A-Z]{1})[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$", RegexOptions.Compiled);
       var carreg = /^(([\u4e00-\u9fa5]{1}[A-Z]{1})[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{5}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{5}[DdFf])$/;
       var carreg1 = /^(([\u4e00-\u9fa5]{1}[A-Z]{1})[-]?|([wW][Jj][\u4e00-\u9fa5]{1}[-]?)|([a-zA-Z]{2}))([A-Za-z0-9]{6}|[DdFf][A-HJ-NP-Za-hj-np-z0-9][0-9]{4}|[0-9]{6}[DdFf])$/;
       if (!carreg.test(self.data.textCarNum)&&!carreg1.test(self.data.textCarNum)) {
@@ -150,13 +145,18 @@ Page({
     
     
     console.log(self.data.textArr)
-
+     self.data.textCarNum = self.data.textArr.join("");
+    self.data.sForm.name = self.data.textArr.join("");
+    self.setData({
+      textCarNum:self.data.textCarNum
+    });
     self.setData({
       textCarNum:self.data.textArr.join(""),
       textValue: self.data.textArr,
       keyboardValue: self.data.keyboard2,
       specialBtn: true,
-    })
+    });
+
     if (self.data.textArr.length > 1) {
       //展示数字键盘
       self.setData({
@@ -197,10 +197,15 @@ Page({
 
   submit(){
     const self = this;
-
+    self.data.buttonClick=true;
     const pass = api.checkComplete(self.data.sForm);
     if(pass){
-      self.addressAdd()
+      if((self.data.newOil&&self.data.textArr.length==8)||self.data.textArr.length==7){
+        self.addressAdd()
+      }else{
+        api.showToast('请输入正确的车牌','none')
+      };
+      
     }else{
       api.showToast('请补全信息','none');
     };
@@ -213,11 +218,11 @@ Page({
       web_newOil:self.data.newOil
     })
   },
-
-
-
   addressAdd(){
     const self = this;
+    if(self.data.buttonClick==true){
+      api.showToast('请稍等','none')
+    };
     const postData = {};
     postData.token = wx.getStorageSync('token');
     postData.data = {};
