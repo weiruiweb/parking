@@ -11,7 +11,7 @@
     "pages/user_member_in/user_member_in",
     "pages/user_car_manage/user_car_manage",
     "pages/user_car_new/user_car_new",
-    "pages/login/login",
+    "pages/register/register",
     "pages/index_parking_detail/index_parking_detail"
 
   ],
