@@ -54,6 +54,18 @@ class Api extends Base{
         this.request(allParams);
     }    
 
+    register(param,callback){
+        var allParams ={
+            url:'Project/Cslf/register',
+            type:'post',
+            data:param,
+            sCallback: function(data) {
+                callback && callback(data);
+            }
+        };
+        this.request(allParams);
+    }  
+
 
 
     labelGet(param,callback){

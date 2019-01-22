@@ -6,18 +6,16 @@
 	<view class="w710">
 		<view class="input_list1 font28 flex">
 			<view class="input_before1 flex"><image src="/images/login1.png"></image></view>
-			<view class="input_box"><input placeholder="姓名"></input></view>
+			<view class="input_box"><input placeholder="姓名" value="{{web_submitData.name}}"  data-key="name" bindblur="inputChange"></input></view>
 		</view>
 		<view class="input_list1 font28 flex">
 			<view class="input_before1 flex"><image src="/images/login2.png"></image></view>
-			<view class="input_box"><input placeholder="电话"></input></view>
+			<view class="input_box"><input placeholder="电话" value="{{web_submitData.phone}}"  data-key="phone" bindblur="inputChange"></input></view>
 		</view>
 		<view class="input_list1 font28 flex">
 			<view class="input_before1 flex"><image src="/images/login4.png"></image></view>
-			<view class="input_box"><input placeholder="车牌号"></input></view>
+			<view class="input_box"><input placeholder="车牌号" value="{{web_submitData.car_num}}"  data-key="car_num" bindblur="inputChange"></input></view>
 		</view>
 	</view>
 </view>
-<form bindsubmit="submit" report-submit="true">
-	<button  form-type="submit" class="submit_info">会员注册</button>
-</form>
+<button  form-type="submit" class="submit_info" bindtap="{{web_buttonCanClick?'submit':''}}">会员注册</button>

@@ -32,13 +32,14 @@ Page({
     };
     const callback = (res)=>{
       if(res){
-        self.data.mainData = res
+        self.data.mainData = res;
+        self.setData({
+          web_mainData:self.data.mainData
+        })
       }else{
         api.showToast('网络故障','none')
       };
-      self.setData({
-        web_mainData:self.data.mainData
-      })
+      
     }
     api.getMemberInfo(postData,callback)
   },

@@ -50,18 +50,17 @@ Page({
     };
     const callback = (res)=>{
       if(res.score){
-        self.data.mainData = res
+        self.data.mainData = res;
+        self.setData({
+          web_mainData:self.data.mainData
+        })
       }else{
-        api.showToast('该车牌号未绑定会员','none')
+        api.showToast('该车牌号未绑定会员','none',1000)
         setTimeout(function(){
-            wx.navigateBack({
-              delta: 1
-            });
-          },1000);
+          api.pathTo('/pages/register/register','redi')
+        },1000);
       };
-      self.setData({
-        web_mainData:self.data.mainData
-      })
+      
     }
     api.getMemberInfo(postData,callback)
   },
